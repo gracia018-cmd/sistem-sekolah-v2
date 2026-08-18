@@ -6,59 +6,113 @@ use Illuminate\Http\Request;
 
 class MajorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $majors = [
+            [
+                'id' => 1,
+                'code' => 'AKL',
+                'name' => 'Akuntansi dan Keuangan Lembaga',
+                'description' => 'Program keahlian akuntansi dan keuangan.',
+            ],
+            [
+                'id' => 2,
+                'code' => 'TKJ',
+                'name' => 'Teknik Komputer dan Jaringan',
+                'description' => 'Program keahlian komputer dan jaringan.',
+            ],
+            [
+                'id' => 3,
+                'code' => 'BD',
+                'name' => 'Bisnis Digital',
+                'description' => 'Program keahlian bisnis dan teknologi digital.',
+            ],
+        ];
+
+        $title = 'Daftar Jurusan';
+
+        return view('majors.index', compact('majors', 'title'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $title = 'Tambah Jurusan';
+
+        return view('majors.create', compact('title'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    public function edit($id)
+    {
+        $majors = [
+            [
+                'id' => 1,
+                'code' => 'AKL',
+                'name' => 'Akuntansi dan Keuangan Lembaga',
+                'description' => 'Program keahlian akuntansi dan keuangan.',
+            ],
+            [
+                'id' => 2,
+                'code' => 'TKJ',
+                'name' => 'Teknik Komputer dan Jaringan',
+                'description' => 'Program keahlian komputer dan jaringan.',
+            ],
+            [
+                'id' => 3,
+                'code' => 'BD',
+                'name' => 'Bisnis Digital',
+                'description' => 'Program keahlian bisnis dan teknologi digital.',
+            ],
+        ];
+
+        $major = collect($majors)->firstWhere('id', (int) $id);
+
+        $title = 'Ubah Jurusan';
+
+        return view('majors.edit', compact('major', 'id', 'title'));
+    }
+
+    public function show($id)
+    {
+        $majors = [
+            [
+                'id' => 1,
+                'code' => 'AKL',
+                'name' => 'Akuntansi dan Keuangan Lembaga',
+                'description' => 'Program keahlian akuntansi dan keuangan.',
+            ],
+            [
+                'id' => 2,
+                'code' => 'TKJ',
+                'name' => 'Teknik Komputer dan Jaringan',
+                'description' => 'Program keahlian komputer dan jaringan.',
+            ],
+            [
+                'id' => 3,
+                'code' => 'BD',
+                'name' => 'Bisnis Digital',
+                'description' => 'Program keahlian bisnis dan teknologi digital.',
+            ],
+        ];
+
+        $major = collect($majors)->firstWhere('id', (int) $id);
+
+        $title = 'Detail Jurusan';
+
+        return view('majors.show', compact('major', 'title'));
+    }
+
     public function store(Request $request)
     {
-        //
+        return redirect()->route('majors.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function update(Request $request, $id)
     {
-        //
+        return redirect()->route('majors.show', ['major' => $id]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('majors.index');
     }
 }

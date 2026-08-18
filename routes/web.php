@@ -74,8 +74,4 @@ Route::prefix('classes')->name('classes.')->group(function () {
 
 Route::resource('majors', MajorController::class);
 
-// Halaman Daftar Siswa 
-Route::get('/students',function () {
-    return "ini adalah daftar siswa";
-});
 
